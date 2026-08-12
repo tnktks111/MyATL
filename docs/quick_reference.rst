@@ -53,6 +53,10 @@
      - :class:`rolling_hash.RollingHash`
      - ``get``, ``same``
      - 構築 :math:`O(N)`、比較 :math:`O(1)`
+   * - 密行列を短く計算したい
+     - :doc:`guides/numpy_matrix`
+     - ``@``, ``matrix_power``, ``solve``
+     - 演算と行列サイズによる
 
 判断の目安
 ----------
@@ -61,4 +65,5 @@
 必要ならSegment Tree、区間更新まで必要ならLazy Segment Treeを選びます。
 静的な文字列1本の部分文字列比較はRolling Hash、文字列集合の追加・検索は
 Trieです。一般の無向連結性にはUnion-Findを使い、有向グラフの互いに到達可能な
-塊を一括計算するときはSCCを使います。
+塊を一括計算するときはSCCを使います。NumPyが利用可能で密な行列をまとめて処理
+したい場合は :doc:`guides/numpy_matrix` を参照してください。

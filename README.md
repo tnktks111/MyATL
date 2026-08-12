@@ -43,4 +43,5 @@ python -m sphinx -W -b doctest docs docs/_build/doctest
 
 生成済みHTMLを持ち込む場合は `docs/_build/html/index.html` を開いてください。
 ドキュメントソースには用途別早見表、使用ガイド、APIリファレンス、監査記録が
-含まれます。
+含まれます。NumPyが利用可能な試験環境向けに、密行列演算、行列累乗、法付き演算、
+連立一次方程式の注意点をまとめたガイドも収録しています。

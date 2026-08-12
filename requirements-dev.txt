@@ -1,2 +1,3 @@
 pytest>=8,<10
 Sphinx>=8,<10
+numpy>=1.24,<3

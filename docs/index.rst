@@ -17,6 +17,7 @@ MyATLは、試験中に目的の実装を探し、前提・API・計算量を確
    guides/range_queries
    guides/graphs
    guides/strings
+   guides/numpy_matrix
 
 .. toctree::
    :maxdepth: 2
