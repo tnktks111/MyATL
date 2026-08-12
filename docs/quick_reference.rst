@@ -1,0 +1,64 @@
+やりたいこと早見表
+==================
+
+.. list-table::
+   :header-rows: 1
+   :widths: 34 22 23 21
+
+   * - やりたいこと
+     - 選ぶ実装
+     - 主な操作
+     - 計算量
+   * - 無向グラフの連結性を管理したい
+     - :class:`union_find.UnionFind`
+     - ``union``, ``same``
+     - 償却 :math:`O(\alpha(N))`
+   * - 頂点間のポテンシャル差を管理したい
+     - :class:`modified_union_find.weighted_union_find.WeightedUnionFind`
+     - ``union``, ``diff``
+     - 償却 :math:`O(\alpha(N))`
+   * - 削除されていない次の位置を探したい
+     - :class:`modified_union_find.successor_dsu.SuccessorDSU`
+     - ``erase``, ``next``
+     - 償却 :math:`O(\alpha(N))`
+   * - 1点加算と区間和を処理したい
+     - :class:`fenwick.FenwickTree`
+     - ``add``, ``sum``
+     - :math:`O(\log N)`
+   * - 1点更新と一般の区間積を処理したい
+     - :class:`seg_tree.SegTree`
+     - ``set``, ``prod``
+     - :math:`O(\log N)`
+   * - 区間更新と区間積を処理したい
+     - :class:`lazy_seg_tree.LazySegTree`
+     - ``apply``, ``prod``
+     - :math:`O(\log N)`
+   * - 強連結成分分解をしたい
+     - :class:`scc.SCCGraph`
+     - ``scc``, ``scc_ids``
+     - :math:`O(N+M)`
+   * - 最大流・最小カットを求めたい
+     - :class:`max_flow.MFGraph`
+     - ``flow``, ``min_cut``
+     - :math:`O(N^2M)`
+   * - 各辺に下限がある循環流・最大流を求めたい
+     - :class:`max_flow.FlowLowerBound`
+     - ``circulation``, ``flow``, ``edges``
+     - :math:`O(N^2(N+M))`
+   * - 文字列集合を管理したい
+     - :class:`trie.Trie`
+     - ``insert``, ``search``
+     - :math:`O(L)`
+   * - 部分文字列を高速比較したい
+     - :class:`rolling_hash.RollingHash`
+     - ``get``, ``same``
+     - 構築 :math:`O(N)`、比較 :math:`O(1)`
+
+判断の目安
+----------
+
+区間和だけなら定数倍とコード量が小さいFenwick Tree、非可換演算や境界探索が
+必要ならSegment Tree、区間更新まで必要ならLazy Segment Treeを選びます。
+静的な文字列1本の部分文字列比較はRolling Hash、文字列集合の追加・検索は
+Trieです。一般の無向連結性にはUnion-Findを使い、有向グラフの互いに到達可能な
+塊を一括計算するときはSCCを使います。
