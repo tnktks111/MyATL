@@ -13,6 +13,10 @@
      - :class:`union_find.UnionFind`
      - ``union``, ``same``
      - 償却 :math:`O(\alpha(N))`
+   * - 標準入力・標準出力を素早く書きたい
+     - :doc:`guides/data_io`
+     - ``input``, ``readline``, ``join``
+     - 入出力サイズに比例
    * - 頂点間のポテンシャル差を管理したい
      - :class:`modified_union_find.weighted_union_find.WeightedUnionFind`
      - ``union``, ``diff``

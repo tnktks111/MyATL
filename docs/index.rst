@@ -13,6 +13,7 @@ MyATLは、試験中に目的の実装を探し、前提・API・計算量を確
    :caption: 目的から探す
 
    quick_reference
+   guides/data_io
    guides/union_find
    guides/range_queries
    guides/graphs
