@@ -1,2 +1,3 @@
 Sphinx>=8,<10
 numpy>=1.24,<3
+sortedcontainers>=2.4,<3

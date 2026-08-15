@@ -61,6 +61,10 @@
      - :doc:`guides/numpy_matrix`
      - ``@``, ``matrix_power``, ``solve``
      - 演算と行列サイズによる
+   * - 動的な順序集合・multisetを使いたい
+     - :doc:`guides/sorted_containers`
+     - ``add``, ``bisect_left``, ``irange``
+     - 多くの操作が近似 :math:`O(\log N)`
 
 判断の目安
 ----------
@@ -70,4 +74,6 @@
 静的な文字列1本の部分文字列比較はRolling Hash、文字列集合の追加・検索は
 Trieです。一般の無向連結性にはUnion-Findを使い、有向グラフの互いに到達可能な
 塊を一括計算するときはSCCを使います。NumPyが利用可能で密な行列をまとめて処理
-したい場合は :doc:`guides/numpy_matrix` を参照してください。
+したい場合は :doc:`guides/numpy_matrix` を参照してください。外部ライブラリを利用
+でき、動的な順序集合・multiset・key順mappingが必要なら
+:doc:`guides/sorted_containers` を参照してください。
