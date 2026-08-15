@@ -18,6 +18,9 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
    * - :doc:`weighted_union_find`
      - 加法ポテンシャル差
      - ``union``, ``diff``
+   * - :doc:`graph_union_find`
+     - 成分ごとの辺数・閉路・頂点重み
+     - ``add_edge``, ``info``
    * - :doc:`successor_dsu`
      - 削除後の次の生存位置
      - ``erase``, ``next``
@@ -52,6 +55,7 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
 
    union_find
    weighted_union_find
+   graph_union_find
    successor_dsu
    fenwick
    seg_tree

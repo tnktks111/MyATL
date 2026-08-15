@@ -35,6 +35,27 @@ WeightedUnionFind
 ``union`` が ``False`` なら既存制約と矛盾しています。非可換群、制約削除、矛盾後も
 全制約を保持して原因を説明する用途には使えません。
 
+GraphUnionFind
+--------------
+
+辺を追加しながら、連結成分ごとの辺数、閉路、余分な辺数、頂点重みを管理します。
+
+.. testcode:: guide-graph-union-find
+
+   from modified_union_find.graph_union_find import GraphUnionFind
+
+   graph = GraphUnionFind([10, 20, 30])
+   graph.add_edge(0, 1)
+   graph.add_edge(1, 2)
+   assert graph.is_tree(0)
+   assert graph.weight_sum(0) == 60
+   graph.add_edge(2, 0)
+   assert graph.has_cycle(0)
+   assert graph.extra_edge_count(0) == 1
+
+自己ループと多重辺も1辺として数えます。辺・頂点の削除、辺重み、頂点重みの変更は
+扱えません。
+
 SuccessorDSU
 ------------
 
@@ -55,5 +76,6 @@ API仕様
 -------
 
 :class:`union_find.UnionFind`、
+:class:`modified_union_find.graph_union_find.GraphUnionFind`、
 :class:`modified_union_find.weighted_union_find.WeightedUnionFind`、
 :class:`modified_union_find.successor_dsu.SuccessorDSU` を参照してください。

@@ -7,6 +7,7 @@
 ## 実装一覧
 
 - `union_find.py`: Union-Find
+- `modified_union_find/graph_union_find.py`: Graph Union-Find（辺数・閉路・頂点重み）
 - `modified_union_find/weighted_union_find.py`: Weighted Union-Find
 - `modified_union_find/successor_dsu.py`: Successor DSU
 - `fenwick.py`: Fenwick Tree

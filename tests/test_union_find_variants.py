@@ -3,6 +3,7 @@
 import random
 from collections import deque
 
+from modified_union_find.graph_union_find import GraphUnionFind
 from modified_union_find.successor_dsu import SuccessorDSU
 from modified_union_find.weighted_union_find import WeightedUnionFind
 from union_find import UnionFind
@@ -35,6 +36,53 @@ def test_union_find_matches_naive_component_labels() -> None:
                     assert union_find.same(u, v) == (label[u] == label[v])
                 assert union_find.size(u) == label.count(label[u])
             assert union_find.group_count() == len(set(label))
+
+
+def test_graph_union_find_tracks_component_information() -> None:
+    union_find = GraphUnionFind([10, -4, 7, 20, 3])
+
+    assert union_find.info(0) == (1, 0, 0, False, True, 10, 10)
+    assert union_find.add_edge(0, 1)
+    assert union_find.add_edge(1, 2)
+    assert union_find.info(1) == (3, 2, 0, False, True, 13, 10)
+    assert not union_find.add_edge(2, 0)
+    assert union_find.info(0) == (3, 3, 1, True, False, 13, 10)
+
+    assert union_find.add_edge(3, 4)
+    assert union_find.add_edge(2, 3)
+    assert union_find.info(4) == (5, 5, 1, True, False, 36, 20)
+    assert union_find.group_count() == 1
+
+
+def test_graph_union_find_counts_self_loops_and_parallel_edges() -> None:
+    union_find = GraphUnionFind([-5, -2])
+
+    assert not union_find.add_edge(0, 0)
+    assert union_find.edge_count(0) == 1
+    assert union_find.extra_edge_count(0) == 1
+    assert union_find.has_cycle(0)
+    assert not union_find.is_tree(0)
+    assert union_find.weight_sum(0) == -5
+    assert union_find.weight_max(0) == -5
+
+    assert union_find.add_edge(0, 1)
+    assert not union_find.add_edge(0, 1)
+    assert union_find.size(1) == 2
+    assert union_find.edge_count(1) == 3
+    assert union_find.extra_edge_count(1) == 2
+    assert union_find.weight_sum(1) == -7
+    assert union_find.weight_max(1) == -2
+
+
+def test_graph_union_find_empty_and_index_validation() -> None:
+    union_find = GraphUnionFind([])
+    assert union_find.group_count() == 0
+    try:
+        union_find.info(0)
+    except IndexError:
+        pass
+    else:
+        raise AssertionError("info must reject an out-of-range vertex")
 
 
 def _naive_difference(
