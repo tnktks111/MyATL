@@ -20,7 +20,7 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
      - ``union``, ``diff``
    * - :doc:`graph_union_find`
      - 成分ごとの辺数・閉路・頂点重み
-     - ``add_edge``, ``info``
+     - ``add_edge``, ``groups``, ``info``
    * - :doc:`successor_dsu`
      - 削除後の次の生存位置
      - ``erase``, ``next``

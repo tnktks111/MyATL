@@ -116,6 +116,17 @@ class GraphUnionFind:
         """現在の連結成分数を :math:`O(1)` で返す。"""
         return self._group_count
 
+    def groups(self) -> list[list[int]]:
+        r"""全連結成分を頂点番号順のリストとして返す。
+
+        計算量は :math:`O(N\alpha(N))`。各成分内の頂点は昇順で、成分は
+        最小頂点の昇順に並ぶ。
+        """
+        result: dict[int, list[int]] = {}
+        for vertex in range(len(self._parent)):
+            result.setdefault(self.find(vertex), []).append(vertex)
+        return list(result.values())
+
     def info(self, x: int) -> ComponentInfo:
         """``x`` の成分の全集約情報を返す。"""
         root = self.find(x)

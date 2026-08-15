@@ -49,9 +49,11 @@ def test_graph_union_find_tracks_component_information() -> None:
     assert union_find.info(0) == (3, 3, 1, True, False, 13, 10)
 
     assert union_find.add_edge(3, 4)
+    assert union_find.groups() == [[0, 1, 2], [3, 4]]
     assert union_find.add_edge(2, 3)
     assert union_find.info(4) == (5, 5, 1, True, False, 36, 20)
     assert union_find.group_count() == 1
+    assert union_find.groups() == [[0, 1, 2, 3, 4]]
 
 
 def test_graph_union_find_counts_self_loops_and_parallel_edges() -> None:
@@ -77,6 +79,7 @@ def test_graph_union_find_counts_self_loops_and_parallel_edges() -> None:
 def test_graph_union_find_empty_and_index_validation() -> None:
     union_find = GraphUnionFind(0)
     assert union_find.group_count() == 0
+    assert union_find.groups() == []
     try:
         union_find.info(0)
     except IndexError:

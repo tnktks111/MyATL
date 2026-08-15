@@ -31,6 +31,7 @@ GraphUnionFind
    assert graph.add_edge(1, 2)
    assert graph.add_edge(3, 4)
    assert graph.group_count() == 2
+   assert graph.groups() == [[0, 1, 2], [3, 4]]
    assert graph.same(0, 2)
    assert not graph.same(0, 3)
    assert graph.find(0) == graph.find(2)
@@ -58,6 +59,7 @@ GraphUnionFind
    # 閉路を持つ成分と木を併合しても、余分な辺数は保存される。
    assert graph.add_edge(2, 3)
    assert graph.group_count() == 1
+   assert graph.groups() == [[0, 1, 2, 3, 4]]
    assert graph.info(4) == ComponentInfo(
        size=5,
        edge_count=6,
