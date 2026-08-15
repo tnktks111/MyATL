@@ -44,7 +44,7 @@ GraphUnionFind
 
    from modified_union_find.graph_union_find import GraphUnionFind
 
-   graph = GraphUnionFind([10, 20, 30])
+   graph = GraphUnionFind([10, 20, 30])  # 頂点重みを指定
    graph.add_edge(0, 1)
    graph.add_edge(1, 2)
    assert graph.is_tree(0)
@@ -52,6 +52,14 @@ GraphUnionFind
    graph.add_edge(2, 0)
    assert graph.has_cycle(0)
    assert graph.extra_edge_count(0) == 1
+
+重みが不要なら頂点数だけを渡せます。集約される頂点重みは0になります。
+
+.. testcode:: guide-graph-union-find
+
+   unweighted_graph = GraphUnionFind(4)
+   unweighted_graph.add_edge(0, 1)
+   assert unweighted_graph.weight_sum(0) == 0
 
 自己ループと多重辺も1辺として数えます。辺・頂点の削除、辺重み、頂点重みの変更は
 扱えません。

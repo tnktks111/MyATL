@@ -75,7 +75,7 @@ def test_graph_union_find_counts_self_loops_and_parallel_edges() -> None:
 
 
 def test_graph_union_find_empty_and_index_validation() -> None:
-    union_find = GraphUnionFind([])
+    union_find = GraphUnionFind(0)
     assert union_find.group_count() == 0
     try:
         union_find.info(0)
@@ -83,6 +83,21 @@ def test_graph_union_find_empty_and_index_validation() -> None:
         pass
     else:
         raise AssertionError("info must reject an out-of-range vertex")
+
+
+def test_graph_union_find_without_weights_uses_zero() -> None:
+    union_find = GraphUnionFind(3)
+    assert union_find.add_edge(0, 1)
+    assert union_find.info(0) == (2, 1, 0, False, True, 0, 0)
+    assert union_find.weight_sum(2) == 0
+    assert union_find.weight_max(2) == 0
+
+    try:
+        GraphUnionFind(-1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("negative n must be rejected")
 
 
 def _naive_difference(

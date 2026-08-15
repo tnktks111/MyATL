@@ -23,7 +23,8 @@ class GraphUnionFind:
     :math:`O(\alpha(N))`、空間計算量は :math:`O(N)`。
 
     Args:
-        weights: 各頂点の整数重み。長さが頂点数になる。空列も許す。
+        n_or_weights: 頂点数、または各頂点の整数重み。頂点数を渡した場合、
+            全頂点の重みを0として扱う。0および空列も許す。
 
     Notes:
         ``extra_edge_count(x)`` は、``x`` の成分を木にするために削除する
@@ -31,12 +32,18 @@ class GraphUnionFind:
         重み、頂点重みの変更には対応しない。
     """
 
-    def __init__(self, weights: Sequence[int]) -> None:
+    def __init__(self, n_or_weights: int | Sequence[int]) -> None:
+        if isinstance(n_or_weights, int):
+            if n_or_weights < 0:
+                raise ValueError("n must be non-negative")
+            weights = [0] * n_or_weights
+        else:
+            weights = list(n_or_weights)
         self._parent = list(range(len(weights)))
         self._size = [1] * len(weights)
         self._edge_count = [0] * len(weights)
-        self._weight_sum = list(weights)
-        self._weight_max = list(weights)
+        self._weight_sum = weights.copy()
+        self._weight_max = weights.copy()
         self._group_count = len(weights)
 
     def find(self, x: int) -> int:

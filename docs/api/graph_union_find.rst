@@ -3,6 +3,8 @@ GraphUnionFind
 
 辺追加型の無向グラフで、連結成分ごとの頂点数・辺数・閉路・頂点重みを管理します。
 使い分けと例は :doc:`../guides/union_find` を参照してください。
+コンストラクタには頂点数 ``GraphUnionFind(n)``、または頂点重み列
+``GraphUnionFind(weights)`` を渡します。
 
 完全例
 ------
