@@ -20,6 +20,27 @@ Strongly Connected Components
 無向連結性の逐次管理ならUnion-Findの方が簡潔です。SCCは辺追加後の再計算を高速化
 する動的構造ではなく、呼ぶたびに :math:`O(N+M)` で全体を計算します。
 
+Kruskal Reconstruction Tree
+----------------------------
+
+重み付き無向グラフで、辺を軽い順に追加したときの連結成分の併合過程を木にします。
+2頂点が連結になる最小の重み閾値（minimax距離）も取得できます。
+
+.. testcode:: guide-kruskal-reconstruction-tree
+
+   from kruskal_reconstruction_tree import KruskalReconstructionTree
+
+   tree = KruskalReconstructionTree(
+       4,
+       [(0, 1, 3), (1, 2, 5), (0, 2, 8), (2, 3, 10)],
+   )
+   assert tree.connection_weight(0, 2) == 5
+   assert tree.connection_weight(0, 3) == 10
+
+元頂点は ``0..n-1``、併合ノードは ``n`` 以降です。非連結なら森になり、異なる木の
+頂点間では ``connection_weight`` が ``None`` を返します。辺の動的変更には対応
+しません。
+
 Maximum Flow / Minimum Cut
 --------------------------
 
@@ -71,5 +92,7 @@ Lower-Bounded Maximum Flow
 API仕様
 -------
 
-:class:`scc.SCCGraph`、:class:`max_flow.MFGraph`、
+:class:`scc.SCCGraph`、
+:class:`kruskal_reconstruction_tree.KruskalReconstructionTree`、
+:class:`max_flow.MFGraph`、
 :class:`max_flow.FlowLowerBound` を参照してください。

@@ -2,8 +2,94 @@
 
 import random
 
+from kruskal_reconstruction_tree import KruskalReconstructionTree
 from max_flow import MFGraph
 from scc import SCCGraph
+
+
+def test_kruskal_reconstruction_tree_structure_and_queries() -> None:
+    tree = KruskalReconstructionTree(
+        6,
+        [
+            (0, 1, 4),
+            (1, 2, 2),
+            (0, 2, 5),  # 追加時にはすでに同じ成分なので不採用
+            (3, 4, -1),
+            (2, 3, 7),
+            (0, 0, -10),  # 自己ループ
+        ],
+    )
+    assert tree.num_vertices() == 6
+    assert tree.num_nodes() == 10
+    assert tree.roots() == [5, 9]
+    assert tree.children(0) == ()
+    assert tree.weight(0) is None
+    assert tree.children(6) == (3, 4)
+    assert tree.weight(6) == -1
+    assert tree.component_size(9) == 5
+    assert tree.parent(9) is None
+    assert tree.connection_weight(1, 2) == 2
+    assert tree.connection_weight(0, 2) == 4
+    assert tree.connection_weight(0, 4) == 7
+    assert tree.connection_weight(0, 5) is None
+    assert tree.connection_weight(5, 5) is None
+    assert tree.weight(tree.lca(0, 4)) == 7  # type: ignore[arg-type]
+
+
+def test_kruskal_reconstruction_tree_empty_and_validation() -> None:
+    tree = KruskalReconstructionTree(0)
+    assert tree.num_nodes() == 0
+    assert tree.roots() == []
+    try:
+        KruskalReconstructionTree(-1)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("negative n must be rejected")
+
+    try:
+        KruskalReconstructionTree(2, [(0, 2, 1)])
+    except IndexError:
+        pass
+    else:
+        raise AssertionError("out-of-range endpoint must be rejected")
+
+
+def test_kruskal_reconstruction_tree_deep_tree_root_detection() -> None:
+    n = 20
+    edges = [(0, vertex, vertex) for vertex in range(1, n - 1)]
+    tree = KruskalReconstructionTree(n, edges)
+    assert tree.connection_weight(0, n - 2) == n - 2
+    assert tree.connection_weight(0, n - 1) is None
+    assert tree.lca(0, n - 1) is None
+
+
+def test_kruskal_reconstruction_tree_matches_minimax_paths() -> None:
+    rng = random.Random(86420)
+    infinity = 10**9
+    for n in range(1, 9):
+        for _ in range(50):
+            edges = [
+                (rng.randrange(n), rng.randrange(n), rng.randrange(-5, 8))
+                for _ in range(rng.randrange(18))
+            ]
+            tree = KruskalReconstructionTree(n, edges)
+            minimax = [[infinity] * n for _ in range(n)]
+            for u, v, weight in edges:
+                if u != v:
+                    minimax[u][v] = min(minimax[u][v], weight)
+                    minimax[v][u] = min(minimax[v][u], weight)
+            for middle in range(n):
+                for u in range(n):
+                    for v in range(n):
+                        minimax[u][v] = min(
+                            minimax[u][v], max(minimax[u][middle], minimax[middle][v])
+                        )
+            for u in range(n):
+                assert tree.connection_weight(u, u) is None
+                for v in range(u + 1, n):
+                    expected = None if minimax[u][v] == infinity else minimax[u][v]
+                    assert tree.connection_weight(u, v) == expected
 
 
 def _reachability(n: int, edges: list[tuple[int, int]]) -> list[list[bool]]:

@@ -41,6 +41,10 @@
      - :class:`scc.SCCGraph`
      - ``scc``, ``scc_ids``
      - :math:`O(N+M)`
+   * - 重み順の成分併合過程・minimax距離を求めたい
+     - :class:`kruskal_reconstruction_tree.KruskalReconstructionTree`
+     - ``connection_weight``, ``lca``
+     - 構築 :math:`O(M\log M+N\log N)`、取得 :math:`O(\log N)`
    * - 最大流・最小カットを求めたい
      - :class:`max_flow.MFGraph`
      - ``flow``, ``min_cut``

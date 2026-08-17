@@ -36,6 +36,9 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
    * - :doc:`scc`
      - 強連結成分分解
      - ``scc``, ``scc_ids``
+   * - :doc:`kruskal_reconstruction_tree`
+     - 重み順の連結成分併合過程・minimax距離
+     - ``connection_weight``, ``lca``
    * - :doc:`max_flow`
      - 最大流と最小カット
      - ``flow``, ``min_cut``
@@ -61,6 +64,7 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
    seg_tree
    lazy_seg_tree
    scc
+   kruskal_reconstruction_tree
    max_flow
    max_flow_lower_bound
    trie
