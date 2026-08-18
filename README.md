@@ -15,6 +15,7 @@
 - `lazy_seg_tree.py`: Lazy Segment Tree
 - `scc.py`: Strongly Connected Components
 - `kruskal_reconstruction_tree.py`: Kruskal Reconstruction Tree
+- `shortest_path.py`: Dijkstra / Bellman–Ford / Warshall–Floyd
 - `max_flow.py`: `MFGraph` / `FlowLowerBound`（最大流・下限付き循環流）
 - `trie.py`: Trie
 - `rolling_hash.py`: Rolling Hash

@@ -45,6 +45,18 @@
      - :class:`kruskal_reconstruction_tree.KruskalReconstructionTree`
      - ``connection_weight``, ``lca``
      - 構築 :math:`O(M\log M+N\log N)`、取得 :math:`O(\log N)`
+   * - 非負辺の単一始点最短路を求めたい
+     - :func:`shortest_path.dijkstra`
+     - 距離リスト
+     - :math:`O((N+M)\log N)`
+   * - 負辺を含む単一始点最短路を求めたい
+     - :func:`shortest_path.bellman_ford`
+     - 距離リスト、負閉路は ``-inf``
+     - :math:`O(NM)`
+   * - 全点対最短路を求めたい
+     - :func:`shortest_path.warshall_floyd`
+     - 距離行列
+     - :math:`O(N^3)`
    * - 最大流・最小カットを求めたい
      - :class:`max_flow.MFGraph`
      - ``flow``, ``min_cut``
@@ -57,6 +69,10 @@
      - :class:`trie.Trie`
      - ``insert``, ``search``
      - :math:`O(L)`
+   * - Python標準の文字列操作を確認したい
+     - :doc:`guides/strings`
+     - ``split``, ``join``, ``find``, ``strip`` など
+     - 多くは文字列長に比例
    * - 部分文字列を高速比較したい
      - :class:`rolling_hash.RollingHash`
      - ``get``, ``same``

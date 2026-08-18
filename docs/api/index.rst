@@ -39,6 +39,9 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
    * - :doc:`kruskal_reconstruction_tree`
      - 重み順の連結成分併合過程・minimax距離
      - ``connection_weight``, ``lca``
+   * - :doc:`shortest_path`
+     - 単一始点・全点対最短路
+     - ``dijkstra``, ``bellman_ford``, ``warshall_floyd``
    * - :doc:`max_flow`
      - 最大流と最小カット
      - ``flow``, ``min_cut``
@@ -65,6 +68,7 @@ API仕様の正本は各ソースファイルのdocstringです。以下の実�
    lazy_seg_tree
    scc
    kruskal_reconstruction_tree
+   shortest_path
    max_flow
    max_flow_lower_bound
    trie
