@@ -48,17 +48,33 @@ Shortest Paths
 
 .. testcode:: guide-shortest-path
 
-   from shortest_path import bellman_ford, dijkstra, warshall_floyd
+   from shortest_path import (
+       bellman_ford,
+       dijkstra,
+       restore_path,
+       restore_path_from_predecessor,
+       warshall_floyd,
+   )
 
    edges = [(0, 1, 2), (1, 2, 3), (0, 2, 10)]
-   assert dijkstra(3, edges, 0)[2] == 5
-   assert bellman_ford(3, edges + [(2, 1, -1)], 0)[2] == 5
-   assert warshall_floyd(3, edges)[0][2] == 5
+   dijkstra_distance, predecessor = dijkstra(3, edges, 0)
+   assert dijkstra_distance[2] == 5
+   assert restore_path_from_predecessor(predecessor, 0, 2) == [0, 1, 2]
+
+   bellman_distance, predecessor = bellman_ford(
+       3, edges + [(2, 1, -1)], 0
+   )
+   assert bellman_distance[2] == 5
+   assert restore_path_from_predecessor(predecessor, 0, 2) == [0, 1, 2]
+   distance, next_vertex = warshall_floyd(3, edges)
+   assert distance[0][2] == 5
+   assert restore_path(next_vertex, 0, 2) == [0, 1, 2]
 
 非負辺の単一始点ならDijkstra、負辺を含む単一始点ならBellman--Ford、全点対なら
 Warshall--Floydを選びます。未到達は ``inf``、到達可能な負閉路の影響で最短距離が
-定まらない場合は ``-inf`` です。結果は距離リストまたは距離行列を直接返します。
-無向辺は両方向を追加します。
+定まらない場合は ``-inf`` です。DijkstraとBellman--Fordは直前頂点、
+Warshall--Floydはnext-hop行列を距離とともに返し、それぞれのhelperで経路を復元
+できます。無向辺は両方向を追加します。
 
 Maximum Flow / Minimum Cut
 --------------------------

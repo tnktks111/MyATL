@@ -286,6 +286,26 @@ SCCを使用してください。
      - ``np.linalg.eig``, ``eigvalsh``
      - 対称行列には ``eigvalsh``
 
+基数変換
+--------
+
+``np.base_repr(number, base)`` は整数を2〜36進数の文字列へ変換します。標準の
+``format`` が直接扱わない3進数などにも使えます。
+
+.. testcode:: numpy-base-repr
+
+   import numpy as np
+
+   assert np.base_repr(10, 2) == "1010"
+   assert np.base_repr(10, 3) == "101"
+   assert np.base_repr(255, 16) == "FF"
+   assert np.base_repr(-10, 3) == "-101"
+   assert int(np.base_repr(100, 7), 7) == 100
+
+逆変換にはPython標準の ``int(text, base)`` を使います。詳細、自前実装、2の補数は
+:doc:`number_bases` を参照してください。``padding`` は全体幅でなく、追加するゼロの
+個数です。
+
 よくある間違い
 --------------
 

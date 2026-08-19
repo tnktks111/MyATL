@@ -20,6 +20,7 @@ MyATLは、試験中に目的の実装を探し、前提・API・計算量を確
    guides/strings
    guides/sorted_containers
    guides/numpy_matrix
+   guides/number_bases
 
 .. toctree::
    :maxdepth: 2

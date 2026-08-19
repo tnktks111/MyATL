@@ -17,6 +17,10 @@
      - :doc:`guides/data_io`
      - ``input``, ``readline``, ``join``
      - 入出力サイズに比例
+   * - binaryファイルを読み書きしたい
+     - :doc:`guides/binary_io`
+     - ``bytes``, ``struct``, ``seek``
+     - 入出力サイズに比例
    * - 頂点間のポテンシャル差を管理したい
      - :class:`modified_union_find.weighted_union_find.WeightedUnionFind`
      - ``union``, ``diff``
@@ -81,6 +85,10 @@
      - :doc:`guides/numpy_matrix`
      - ``@``, ``matrix_power``, ``solve``
      - 演算と行列サイズによる
+   * - n進数・基数を変換したい
+     - :doc:`guides/number_bases`
+     - ``bin``, ``format``, ``int(text, base)``
+     - 桁数に比例
    * - 動的な順序集合・multisetを使いたい
      - :doc:`guides/sorted_containers`
      - ``add``, ``bisect_left``, ``irange``

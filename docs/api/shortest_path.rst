@@ -11,11 +11,13 @@ Dijkstra法
 .. testcode:: dijkstra-complete
 
    from math import inf
-   from shortest_path import dijkstra
+   from shortest_path import dijkstra, restore_path_from_predecessor
 
    edges = [(0, 1, 2), (0, 2, 10), (1, 2, 3), (2, 3, 1)]
-   distance = dijkstra(5, edges, source=0)
+   distance, predecessor = dijkstra(5, edges, source=0)
    assert distance == [0, 2, 5, 6, inf]
+   assert restore_path_from_predecessor(predecessor, 0, 3) == [0, 1, 2, 3]
+   assert restore_path_from_predecessor(predecessor, 0, 4) is None
 
 非負辺の単一始点最短路です。負辺が1本でもあれば ``ValueError`` になります。
 
@@ -25,13 +27,17 @@ Bellman--Ford法
 .. testcode:: bellman-ford-complete
 
    from math import inf
-   from shortest_path import bellman_ford
+   from shortest_path import bellman_ford, restore_path_from_predecessor
 
    edges = [(0, 1, 4), (1, 2, -2), (2, 3, 1)]
-   assert bellman_ford(5, edges, 0) == [0, 4, 2, 3, inf]
+   distance, predecessor = bellman_ford(5, edges, 0)
+   assert distance == [0, 4, 2, 3, inf]
+   assert restore_path_from_predecessor(predecessor, 0, 3) == [0, 1, 2, 3]
 
    negative_edges = edges + [(3, 1, -1)]
-   assert bellman_ford(5, negative_edges, 0) == [0, -inf, -inf, -inf, inf]
+   distance, predecessor = bellman_ford(5, negative_edges, 0)
+   assert distance == [0, -inf, -inf, -inf, inf]
+   assert restore_path_from_predecessor(predecessor, 0, 3) is None
 
 負辺を許します。始点から到達可能な負閉路、およびそこから到達可能な頂点は
 ``-inf`` になります。
@@ -42,14 +48,19 @@ Warshall--Floyd法
 .. testcode:: warshall-floyd-complete
 
    from math import inf
-   from shortest_path import warshall_floyd
+   from shortest_path import restore_path, warshall_floyd
 
    edges = [(0, 1, 3), (0, 2, 10), (1, 2, -1), (2, 3, 4)]
-   distance = warshall_floyd(4, edges)
+   distance, next_vertex = warshall_floyd(4, edges)
    assert distance[0] == [0, 3, 2, 6]
    assert distance[3] == [inf, inf, inf, 0]
+   assert restore_path(next_vertex, 0, 3) == [0, 1, 2, 3]
+   assert restore_path(next_vertex, 3, 0) is None
+   assert restore_path(next_vertex, 2, 2) == [2]
 
-全点対最短路です。負閉路を経由できる頂点対は ``-inf`` になります。
+全点対最短路です。``next_vertex[source][target]`` は最短路で次に進む頂点です。
+未到達または負閉路の影響を受ける頂点対では ``-1`` になり、``restore_path`` は
+``None`` を返します。最短路が複数ある場合は、そのうち1本を復元します。
 
 使い分け
 --------
@@ -78,3 +89,5 @@ API仕様
 .. autofunction:: dijkstra
 .. autofunction:: bellman_ford
 .. autofunction:: warshall_floyd
+.. autofunction:: restore_path
+.. autofunction:: restore_path_from_predecessor
