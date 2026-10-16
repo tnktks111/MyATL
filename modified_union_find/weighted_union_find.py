@@ -1,4 +1,7 @@
-"""加法ポテンシャル差付き Union-Find。"""
+"""
+https://github.com/tnktks111/MyATL
+加法ポテンシャル差付き Union-Find。
+"""
 
 
 class WeightedUnionFind:

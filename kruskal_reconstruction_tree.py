@@ -1,4 +1,7 @@
-r"""重み付き無向グラフの Kruskal Reconstruction Tree。"""
+r"""
+https://github.com/tnktks111/MyATL
+重み付き無向グラフの Kruskal Reconstruction Tree。
+"""
 
 from collections.abc import Sequence
 

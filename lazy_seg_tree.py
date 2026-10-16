@@ -1,4 +1,7 @@
-"""モノイド作用による区間更新を扱う Lazy Segment Tree。"""
+"""
+https://github.com/tnktks111/MyATL
+モノイド作用による区間更新を扱う Lazy Segment Tree。
+"""
 
 from collections.abc import Callable, Sequence
 from typing import Any

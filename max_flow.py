@@ -1,4 +1,7 @@
-"""Dinic 法による有向グラフの Maximum Flow。"""
+"""
+https://github.com/tnktks111/MyATL
+Dinic 法による有向グラフの Maximum Flow。
+"""
 
 from typing import NamedTuple, cast
 

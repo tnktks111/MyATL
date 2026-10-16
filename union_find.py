@@ -1,4 +1,6 @@
-r"""Disjoint Set Union (Union-Find).
+r"""
+https://github.com/tnktks111/MyATL
+Disjoint Set Union (Union-Find).
 
 0-indexed の要素を連結成分に分割して管理する。経路圧縮と union by size
 により、各操作の償却計算量は :math:`O(\alpha(N))`、空間計算量は

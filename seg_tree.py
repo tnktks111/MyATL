@@ -1,4 +1,7 @@
-"""モノイドの1点更新と半開区間積を扱う Segment Tree。"""
+"""
+https://github.com/tnktks111/MyATL
+モノイドの1点更新と半開区間積を扱う Segment Tree。
+"""
 
 from collections.abc import Callable, Sequence
 from typing import Any

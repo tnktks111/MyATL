@@ -1,4 +1,6 @@
-r"""最短路アルゴリズムの参照実装。
+r"""
+https://github.com/tnktks111/MyATL
+最短路アルゴリズムの参照実装。
 
 問題に合わせてコピー・改変しやすいよう、Dijkstra法、Bellman--Ford法、
 Warshall--Floyd法を単純な関数としてまとめる。辺はすべて

@@ -1,4 +1,7 @@
-"""文字列の部分文字列を比較する Rolling Hash。"""
+"""
+https://github.com/tnktks111/MyATL
+文字列の部分文字列を比較する Rolling Hash。
+"""
 
 from random import SystemRandom
 

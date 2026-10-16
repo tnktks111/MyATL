@@ -1,4 +1,7 @@
-r"""連結成分ごとの辺数・閉路・頂点重みを管理する Union-Find。"""
+r"""
+https://github.com/tnktks111/MyATL
+連結成分ごとの辺数・閉路・頂点重みを管理する Union-Find。
+"""
 
 from collections.abc import Sequence
 from typing import NamedTuple

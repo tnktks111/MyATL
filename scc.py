@@ -1,4 +1,7 @@
-"""有向グラフの Strongly Connected Components (SCC)。"""
+"""
+https://github.com/tnktks111/MyATL
+有向グラフの Strongly Connected Components (SCC)。
+"""
 
 
 class SCCGraph:

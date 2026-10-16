@@ -1,4 +1,7 @@
-"""文字列集合を管理する Trie。"""
+"""
+https://github.com/tnktks111/MyATL
+文字列集合を管理する Trie。
+"""
 
 
 class _TrieNode:

@@ -1,4 +1,6 @@
-r"""Fenwick Tree (Binary Indexed Tree)。
+r"""
+https://github.com/tnktks111/MyATL
+Fenwick Tree (Binary Indexed Tree)。
 
 0-indexed 配列の1点加算と半開区間 ``[left, right)`` の和を扱う。
 構築は :math:`O(N)`、各操作は :math:`O(\log N)`、空間は

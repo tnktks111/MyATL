@@ -1,4 +1,7 @@
-"""削除されていない次の位置を探す Successor DSU。"""
+"""
+https://github.com/tnktks111/MyATL
+削除されていない次の位置を探す Successor DSU。
+"""
 
 
 class SuccessorDSU:
